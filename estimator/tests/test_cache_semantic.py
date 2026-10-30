@@ -41,7 +41,6 @@ def _build_cache(*, threshold: float = 0.92, log_only: bool = False, hits=None):
     """Build a semantic cache with a fully fake SearchIndex + vectorizer."""
     fake_index = MagicMock()
     fake_index.create.return_value = None
-    fake_index.set_client.return_value = None
     fake_index.query.return_value = hits or []
     fake_index.load.return_value = None
     fake_vectorizer = SimpleNamespace(embed=lambda text: [0.1] * 1536)

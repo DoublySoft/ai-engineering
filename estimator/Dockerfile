@@ -13,12 +13,12 @@ WORKDIR /app
 
 # Copy dependency manifests first. Docker caches each layer, so dependencies
 # are only reinstalled when pyproject.toml or uv.lock actually change.
-COPY pyproject.toml uv.lock* ./
+COPY pyproject.toml uv.lock ./
 
 # Install production dependencies only (no dev tools like pytest/ruff).
 # --no-install-project skips installing our own package (we just need deps).
-# uv will generate the lockfile if it doesn't exist yet.
-RUN uv sync --no-install-project --no-dev
+# --frozen installs exactly what uv.lock pins (fails if lock is missing/stale).
+RUN uv sync --frozen --no-install-project --no-dev
 
 
 # =============================================================================

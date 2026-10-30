@@ -82,8 +82,7 @@ class EstimationSemanticCache:
         schema = dict(_INDEX_SCHEMA)
         schema["index"] = {**_INDEX_SCHEMA["index"], "name": index_name}
 
-        self.index = SearchIndex.from_dict(schema)
-        self.index.set_client(redis_client)
+        self.index = SearchIndex.from_dict(schema, redis_client=redis_client)
         try:
             self.index.create(overwrite=False)
         except Exception as exc:  # noqa: BLE001 — already-exists is fine
