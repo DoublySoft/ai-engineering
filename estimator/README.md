@@ -7,6 +7,7 @@ Servicio de estimacion de proyectos de software impulsado por IA, utilizando una
 CAG (Cache Augmented Generation) es un patron de arquitectura donde el contexto relevante se inyecta directamente en el prompt del LLM como texto estatico. En esta fase del proyecto, las estimaciones de referencia se incluyen como ejemplos dentro del prompt del sistema, sin necesidad de una base de datos vectorial ni busqueda semantica.
 
 Este enfoque es ideal para empezar porque:
+
 - Es simple de implementar y depurar
 - No requiere infraestructura adicional (ni embeddings, ni vector stores)
 - Funciona bien cuando el volumen de contexto es manejable (pocos ejemplos)
@@ -22,17 +23,20 @@ En modulos posteriores del master, este servicio evolucionara a una arquitectura
 ## Inicio rapido con Docker (recomendado)
 
 1. Clonar el repositorio y entrar al directorio:
+
    ```bash
    cd estimator
    ```
 
 2. Copiar el archivo de variables de entorno y configurar las API keys:
+
    ```bash
    cp .env.example .env
    # Editar .env y poner tu API key real
    ```
 
 3. Construir y levantar el servicio:
+
    ```bash
    docker compose up --build
    ```
@@ -59,7 +63,7 @@ curl -X POST http://localhost:8000/api/v1/estimate \
 
 ## Estructura del proyecto
 
-```
+```bash
 estimator/
 ├── app/
 │   ├── main.py            # Aplicacion FastAPI, health check, CORS
@@ -108,6 +112,7 @@ docker compose up --build
 Demo HTML: abrir [http://localhost:8000/static/sse_demo.html](http://localhost:8000/static/sse_demo.html).
 
 Desde CLI:
+
 ```bash
 curl -N -X POST http://localhost:8000/api/v1/estimate/stream \
   -H 'Content-Type: application/json' \
