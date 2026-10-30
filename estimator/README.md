@@ -79,7 +79,7 @@ La batería corre en milisegundos sin tocar APIs externas. Cubre cuatro categor�
 
 ## Estructura del proyecto
 
-```
+```bash
 estimator/
 ├── app/
 │   ├── main.py                        # FastAPI app, CORS, lifespan, /health
